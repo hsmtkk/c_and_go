@@ -10,11 +10,17 @@ sample.o: mytan.h sample.c
 sample.bin: sample.o libmytan.so
 	gcc -L. -o sample.bin sample.o -lmytan -lm
 
+crun: sample.bin
+	env LD_LIBRARY_PATH=. ./sample.bin
+
+demo.bin: demo.go libmytan.so
+	go build -o demo.bin demo.go
+
+gorun: demo.bin
+	env LD_LIBRARY_PATH=. ./demo.bin
+
 clean:
 	rm -f *.bin
 	rm -f *.o
 	rm -f *.so
-
-run: sample.bin
-	env LD_LIBRARY_PATH=. ./sample.bin
 
