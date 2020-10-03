@@ -1,0 +1,2 @@
+double mytan(double x);
+
